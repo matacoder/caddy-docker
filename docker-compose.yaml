@@ -1,0 +1,32 @@
+version: '3.9'
+
+volumes:
+  caddy_data:
+  caddy_config:
+  # Your project static or media files
+  django-docker_media:
+    external: true  # Means here this volume created outside this docker compose
+  django-docker_static:
+    external: true
+
+services:
+  caddy:
+    image: caddy:2
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      # Caddy specific urls
+      - $PWD/Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+      # Your project static or media files
+      - django-docker_media:/django-docker/media
+      - django-docker_static:/django-docker/static
+
+# You must add shared network for all other docker composes so caddy can reverse proxy
+#networks:
+#  default:
+#    external:
+#      name: caddy-docker_default
