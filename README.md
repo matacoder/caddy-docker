@@ -157,7 +157,6 @@ services:
     volumes:
       - static:/code/static
       - media:/code/media
-      - nginx_conf:/code/nginx/
     entrypoint: /code/entrypoint.sh
     environment:
       - DEBUG=0
