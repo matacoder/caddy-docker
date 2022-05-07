@@ -1,5 +1,7 @@
 # Caddy-Docker: Infrastructure as a Service
 
+<img src="https://raw.githubusercontent.com/matacoder/caddy-docker/master/img/caddy.png" height="120"> <img src="https://raw.githubusercontent.com/matacoder/caddy-docker/master/img/django.png" height="120"> <img src="https://raw.githubusercontent.com/matacoder/caddy-docker/master/img/docker.webp" height="120"> 
+
 In this repository I would like to share with you a way to deploy new projects to you Docker Instance in favorite cloud.
 
 I like Caddy a lot, but everytime I need to add new rule I had to ssh to my server, change configuration and do `caddy reload`. Never again!
