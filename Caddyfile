@@ -1,13 +1,13 @@
 http://127.0.0.1 {
     handle /static/* {
-		root * /django-docker
+        root * /django-docker
         file_server
-	}
+    }
     handle /media/* {
-		root * /django-docker
+        root * /django-docker
         file_server
-	}
-	handle {
+    }
+    handle {
         reverse_proxy django:8000
     }
     log
