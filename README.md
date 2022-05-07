@@ -129,6 +129,44 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 ```
  
+## Example `docker-compose.yaml` for django project:
+
+```yaml
+version: '3.9'
+
+volumes:
+  postgres_data:
+  static:
+  media:
+
+services:
+  db:
+    image: postgres:12.4
+    restart: always
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - ./.env
+  django:
+    image: matakov/django-docker:latest
+    depends_on:
+      - db
+    restart: always
+    env_file:
+      - ./.env
+    volumes:
+      - static:/code/static
+      - media:/code/media
+      - nginx_conf:/code/nginx/
+    entrypoint: /code/entrypoint.sh
+    environment:
+      - DEBUG=0
+
+networks:
+  default:
+    external:
+      name: caddy-docker_default
+```
  
  
  
